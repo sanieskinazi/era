@@ -1,0 +1,21 @@
+## STEMREM 205 - Final Project
+## Joe, Sani, Mahdi
+## This file outlines the Unix Bash Commands used for Differentially Methylated Regions (DMR) Analysis 
+## The metilene tool is used for this analysis. Jühling, F., Kretzmer, H., Bernhart, S. H., Otto, C., Stadler, P. F., & Hoffmann, S. (2016). Metilene: fast and sensitive calling of differentially methylated regions from bisulfite sequencing data. Genome research, 26(2), 256-262.
+
+## See GitHub for data pre-processing to get input file for metilene. 
+
+## DMRs for minimum 10 CpGs on All Samples 
+>>metilene -a Normal -b Treated -c 10 -d 0.01 DMR_metiline_in.txt | sort -V -k1,1 -k2,2n > metilene_all_10.output
+
+## DMRs for minimum 10 CpGs on Skin Samples 
+>>metilene -a Normal -b Treated -d 0.01 -m 10 DMR_skin_metilene_in.txt | sort -V -k1,1 -k2,2n > metilene_skin_10.output   
+
+## DMRs for minimum 5 CpGs on All Samples 
+>>metilene -a Normal -b Treated -c 5 -d 0.01 DMR_metiline_in.txt | sort -V -k1,1 -k2,2n > metilene_all_5.output
+
+## DMRs for minimum 5 CpGs on Skin Samples 
+>>metilene -a Normal -b Treated -d 0.01 -m 5 DMR_skin_metilene_in.txt | sort -V -k1,1 -k2,2n > metilene_skin_5.output   
+
+## To use the built-in analysis tool of metilene:
+>> perl metilene_output.pl -q <metilene output name>
